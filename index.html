@@ -1,75 +1,19 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>📖 佩佩的答案之书</title>
-    <style>
-        body {
-            font-family: "Microsoft YaHei", sans-serif;
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-align: center;
-        }
-        .container {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 40px;
-            border-radius: 20px;
-            max-width: 600px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-        }
-        input {
-            width: 80%;
-            padding: 12px;
-            font-size: 16px;
-            border: none;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            outline: none;
-        }
-        button {
-            background: #ff6b6b;
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            font-size: 18px;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-        button:hover {
-            background: #ff5252;
-            transform: scale(1.05);
-        }
-        #answer {
-            margin-top: 30px;
-            font-size: 1.4em;
-            min-height: 2em;
-            line-height: 1.6;
-        }
-    </style>
 </head>
-<body>
-    <div class="container">
-        <h1>📖 佩佩的答案之书</h1>
-        <p>写下你的问题，然后点击“启示”</p>
-        <input type="text" id="question" placeholder="例如：我今天会好运吗？" maxlength="100">
-        <br>
-        <button onclick="ask()">✨ 启示</button>
-        <div id="answer"></div>
-    </div>
+<body style="font-family: sans-serif; text-align: center; padding: 50px;">
+    <h1>📖 佩佩的答案之书</h1>
+    <p>写下你的问题，然后点击“启示”</p>
+    <input type="text" id="question" placeholder="例如：我们会永远在一起吗？" style="padding:10px; width:80%; margin:10px;">
+    <br>
+    <button onclick="ask()" style="padding:10px 20px; background:#ff6b6b; color:white; border:none; border-radius:5px;">✨ 启示</button>
+    <div id="answer" style="margin-top:20px; font-size:1.2em;"></div>
 
     <script>
-        const ANSWERS = [
+        const answers = [
             "是的，毫无疑问。",
             "命中注定如此。",
             "现在还不行，但未来可期。",
@@ -91,20 +35,12 @@
             "答案就在你手中。",
             "今天不宜问这个问题 😏"
         ];
-
-        async function ask() {
-            const question = document.getElementById('question').value.trim();
-            if (!question) {
-                alert("请先输入一个问题！");
-                return;
-            }
-            const answer = ANSWERS[Math.floor(Math.random() * ANSWERS.length)];
-            document.getElementById('answer').innerText = answer;
+        function ask() {
+            const q = document.getElementById('question').value.trim();
+            if (!q) { alert("请先输入一个问题！"); return; }
+            const a = answers[Math.floor(Math.random() * answers.length)];
+            document.getElementById('answer').innerText = a;
         }
-
-        document.getElementById('question').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') ask();
-        });
     </script>
 </body>
 </html>
